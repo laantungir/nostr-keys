@@ -12,11 +12,10 @@ This package allows you to generate a 12 word seed phrase, from which you can ob
 
 ```
 
-import {    strGenerateSeedWords, 
-            boolIsValidWords, 
-            objNostrKeys,
-            objCoinKeys }  
-            from "@laantungir/nostr-keys"
+import { strGenerateSeedWords, 
+         boolIsValidWords, 
+         objNostrKeys,
+         objCoinKeys } from "@laantungir/nostr-keys"
 
 console.log()
 
