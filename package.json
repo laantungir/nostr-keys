@@ -1,22 +1,20 @@
 {
   "name": "nostr-keys",
   "version": "1.0.0",
-  "author": "Laan Tungir (npub1lv6gcr3da8a0lh6cvzkheezxzt3d7fax8ghs0mklg4ncy6tfzz7qexwvac)",
+  "author": "Laan Tungir",
   "description": "Advanced nostr key derivation.",
   "main": "index.mjs",
   "scripts": {
     "test": "node ./test/test.mjs"
   },
-  "keywords": [],
-  "author": "Laan Tungir",
+  "keywords": [
+    "nostr",
+    "bitcoin"
+  ],
   "license": "ISC",
-  "dependencies": {
-    "bip44-constants": "^237.0.0"
-  },
   "directories": {
     "test": "test"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/laantungir/nostr-keys.git"
@@ -24,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/laantungir/nostr-keys/issues"
   },
-  "homepage": "https://github.com/laantungir/nostr-keys#readme"
+  "homepage": "https://github.com/laantungir/nostr-keys#readme",
+  "dependencies": {
+    "@noble/curves": "^1.2.0",
+    "@scure/bip32": "^1.3.2",
+    "@scure/bip39": "^1.2.1",
+    "bitcore-lib": "^10.0.11",
+    "nostr-tools": "^1.14.2"
+  },
+  "devDependencies": {}
 }
