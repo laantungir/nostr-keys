@@ -69,12 +69,6 @@ function objBitcoinKeysByAccount(strSeedWord12, intAccount = 0) {
 
 
 
-let strTest = 'frown wedding balcony modify miracle inform adapt foil onion air tenant voyage'
-
-
-console.log(objNostrKeysByAccount(strTest, 0))
-console.log(objBitcoinKeysByAccount(strTest, 0))
-
 
 
 
