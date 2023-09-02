@@ -6,9 +6,10 @@ import { strGenerateSeedWords,
 
 console.log()
 console.log(`New random private 12 word seed phrase in a string.`)
+console.log()
 let strSP = strGenerateSeedWords()
 console.log(strSP)
-console.log()
+
 
 
 // Use this if you are importing a seed phrase instead of 

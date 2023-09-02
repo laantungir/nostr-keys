@@ -6,7 +6,7 @@ Private keys for Nostr and cryptocurrencies are simply very large random integer
 
 For example, once you generate a Nostr private key, that same private key controls a Bitcoin address, a Litecoin address, and an ever growing list of systems.
 
-This package allows you to generate a 12 word seed phrase, from which you can obtain a near limitless number of Nostr keypairs, Bitcoin private keys and address, as well as those for many other cryptocurrencies.
+This package allows you to generate or import a 12 word seed phrase, from which you can obtain a near limitless number of Nostr keypairs, Bitcoin private keys and address, as well as those for many other cryptocurrencies.
 
 ## Example Code (/test/test.mjs)
 
