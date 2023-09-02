@@ -1,6 +1,6 @@
 {
   "name": "nostr-keys",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Laan Tungir",
   "description": "Advanced nostr key derivation.",
   "main": "index.mjs",
