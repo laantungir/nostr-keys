@@ -1,6 +1,6 @@
 
 import {schnorr} from '@noble/curves/secp256k1'
-import {bytesToHex, concatBytes, hexToBytes} from '@noble/hashes/utils'
+import {bytesToHex} from '@noble/hashes/utils'
 import {wordlist} from '@scure/bip39/wordlists/english'
 import {generateMnemonic,mnemonicToSeedSync, validateMnemonic } from '@scure/bip39'
 import {HDKey} from '@scure/bip32'
@@ -11,15 +11,15 @@ import pkg from 'bitcore-lib';
 
 
 
-function strGenerateSeedWords(){
+export function strGenerateSeedWords(){
   return generateMnemonic(wordlist)
 }
 
-function boolIsValidWords(words){
+export function boolIsValidWords(words){
   return validateMnemonic(words, wordlist)
 }
 
-function strSecKeyFromSeedWords(mnemonic, der_path, passphrase = "" ){
+export function strSecKeyFromSeedWords(mnemonic, der_path, passphrase = "" ){
   let root = HDKey.fromMasterSeed(mnemonicToSeedSync(mnemonic, passphrase))
   let privateKey = root.derive(der_path).privateKey
   if (!privateKey) throw new Error('could not derive private key')
@@ -31,14 +31,18 @@ function getNostrPublicKey(privateKey) {
 }
 
 
-function objNostrKeysByAccount(strSeedWord12, intAccount = 0) {
+export function objNostrKeysByAccount(strSeedWord12, intAccount = 0, intChange = 0, intIndex = 0) {
 
   if (boolIsValidWords(strSeedWord12) == false){
     return {error: "Invalid seed words."}
   }
 
+  if (intChange > 1 || intChange < 0 ){
+    return {error: "intChain is either 0 or 1."}
+  }
+
   let objOut = {}
-  let strDerivationPath = `m/44'/1237'/${intAccount}'/0/0`
+  let strDerivationPath = `m/44'/1237'/${intAccount}'/${intChange}/${intIndex}`
 
   objOut.nsecHex = strSecKeyFromSeedWords(strSeedWord12, strDerivationPath)
   objOut.npubHex = getNostrPublicKey(objOut.nsecHex)
@@ -49,25 +53,35 @@ function objNostrKeysByAccount(strSeedWord12, intAccount = 0) {
 }
 
 
-function objBitcoinKeysByAccount(strSeedWord12, intAccount = 0) {
+export function objCoinKeysByAccount(strSeedWord12, intCoin = 0, intAccount = 0, intChange = 0, intIndex = 0) {
 
   if (boolIsValidWords(strSeedWord12) == false){
     return {error: "Invalid seed words."}
   }
 
+  if (intChange > 1 || intChange < 0 ){
+    return {error: "intChain is either 0 or 1."}
+  }
+
   let objOut = {}
-  let strDerivationPath = `m/44'/0'/0'/0/${intAccount}`
+  let strDerivationPath = `m/44'/${intCoin}'/${intAccount}'/${intChange}/${intIndex}`
 
   objOut.nsecHex = strSecKeyFromSeedWords(strSeedWord12, strDerivationPath)
 
-  let privateKeyBTC = new PrivateKey(objOut.nsecHex)
-  objOut.btcAddress = privateKeyBTC.toAddress().toString()
-  objOut.btcPrivateKeyWIF = privateKeyBTC.toWIF()
+  let privateKeyCoin = new PrivateKey(objOut.nsecHex)
+  objOut.CoinAddress = privateKeyCoin.toAddress().toString()
+  objOut.CoinPrivateKeyWIF = privateKeyCoin.toWIF()
 
   return objOut
 }
 
 
+
+let strTest = 'frown wedding balcony modify miracle inform adapt foil onion air tenant voyage'
+
+
+console.log(objNostrKeysByAccount(strTest, 0))
+console.log(objCoinKeysByAccount(strTest, 0))
 
 
 
