@@ -33,7 +33,7 @@ function getNostrPublicKey(privateKey) {
 
 export function objNostrKeys(strSeedWord12, intAccount = 0, intChange = 0, intIndex = 0) {
 
-  if (boolIsValidWords(strSeedWord12) == false){
+  if (boolIsValidWords(strSeedWord12) === false){
     return {error: "Invalid seed words."}
   }
 
@@ -48,6 +48,7 @@ export function objNostrKeys(strSeedWord12, intAccount = 0, intChange = 0, intIn
   objOut.npubHex = getNostrPublicKey(objOut.nsecHex)
   objOut.nsec = nip19.nsecEncode(objOut.nsecHex)
   objOut.npub = nip19.npubEncode(objOut.npubHex)
+  objOut.strDerivationPath = strDerivationPath
 
   return objOut
 }
@@ -55,7 +56,7 @@ export function objNostrKeys(strSeedWord12, intAccount = 0, intChange = 0, intIn
 
 export function objCoinKeys(strSeedWord12, intCoin = 0, intAccount = 0, intChange = 0, intIndex = 0) {
 
-  if (boolIsValidWords(strSeedWord12) == false){
+  if (boolIsValidWords(strSeedWord12) === false){
     return {error: "Invalid seed words."}
   }
 
@@ -69,8 +70,10 @@ export function objCoinKeys(strSeedWord12, intCoin = 0, intAccount = 0, intChang
   objOut.nsecHex = strSecKeyFromSeedWords(strSeedWord12, strDerivationPath)
 
   let privateKeyCoin = new PrivateKey(objOut.nsecHex)
-  objOut.CoinAddress = privateKeyCoin.toAddress().toString()
-  objOut.CoinPrivateKeyWIF = privateKeyCoin.toWIF()
+
+  objOut.strCoinPrivateKeyWIF = privateKeyCoin.toWIF()
+  objOut.strCoinAddress = privateKeyCoin.toAddress().toString()
+  objOut.strDerivationPath = strDerivationPath
 
   return objOut
 }
