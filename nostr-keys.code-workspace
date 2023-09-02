@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "../../../Writings/TechNotes"
+		},
+		{
+			"path": "../bitcoinjs-lib"
+		},
+		{
+			"path": "../bitcore-lib"
 		}
 	],
 	"settings": {}
