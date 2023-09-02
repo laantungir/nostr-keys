@@ -19,7 +19,7 @@ export function boolIsValidWords(words){
   return validateMnemonic(words, wordlist)
 }
 
-export function strSecKeyFromSeedWords(mnemonic, der_path, passphrase = "" ){
+function strSecKeyFromSeedWords(mnemonic, der_path, passphrase = "" ){
   let root = HDKey.fromMasterSeed(mnemonicToSeedSync(mnemonic, passphrase))
   let privateKey = root.derive(der_path).privateKey
   if (!privateKey) throw new Error('could not derive private key')
@@ -31,7 +31,7 @@ function getNostrPublicKey(privateKey) {
 }
 
 
-export function objNostrKeysByAccount(strSeedWord12, intAccount = 0, intChange = 0, intIndex = 0) {
+export function objNostrKeys(strSeedWord12, intAccount = 0, intChange = 0, intIndex = 0) {
 
   if (boolIsValidWords(strSeedWord12) == false){
     return {error: "Invalid seed words."}
@@ -53,7 +53,7 @@ export function objNostrKeysByAccount(strSeedWord12, intAccount = 0, intChange =
 }
 
 
-export function objCoinKeysByAccount(strSeedWord12, intCoin = 0, intAccount = 0, intChange = 0, intIndex = 0) {
+export function objCoinKeys(strSeedWord12, intCoin = 0, intAccount = 0, intChange = 0, intIndex = 0) {
 
   if (boolIsValidWords(strSeedWord12) == false){
     return {error: "Invalid seed words."}
