@@ -2,7 +2,8 @@
 import { strGenerateSeedWords, 
          boolIsValidWords, 
          objNostrKeys,
-         objCoinKeys } from "nostr-keys"
+         objCoinKeys } from "../index.mjs"
+         
 
 console.log()
 console.log(`New random private 12 word seed phrase in a string.`)
