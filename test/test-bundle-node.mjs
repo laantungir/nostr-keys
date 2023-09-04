@@ -2,7 +2,7 @@
 import { strGenerateSeedWords, 
          boolIsValidWords, 
          objNostrKeys,
-         objCoinKeys } from "nostr-keys"
+         objCoinKeys } from "../dist/bundle-node.js"
 
 console.log()
 console.log(`New random private 12 word seed phrase in a string.`)

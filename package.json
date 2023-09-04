@@ -5,7 +5,9 @@
   "description": "Advanced nostr key derivation.",
   "main": "index.mjs",
   "scripts": {
-    "test": "node ./test/test.mjs"
+    "test": "node ./test/test.mjs",
+    "bundle-node": "./node_modules/.bin/esbuild index.mjs --bundle --outfile=./dist/bundle-node.js --platform=node",
+    "bundle-web": "./node_modules/.bin/esbuild index.mjs --bundle --outfile=./dist/bundle.js"
   },
   "keywords": [
     "nostr",
@@ -30,5 +32,7 @@
     "bitcore-lib": "^10.0.11",
     "nostr-tools": "^1.14.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "esbuild": "0.19.2"
+  }
 }
